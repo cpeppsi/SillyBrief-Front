@@ -12,22 +12,22 @@
 
 .label {
   text-align: center;
-  margin-top: -5%;
+  margin-top: 2%; /* Adjust the margin as needed */
 }
 
 .a, .b, .c {
   font-size: 2.5em;
-  margin-top: 10%;
+  margin-top: 2%; /* Adjust the margin as needed */
 }
 
 .shuffle-button {
   display: inline-block;
-  min-width: 120px; /* Adjust the minimum width as needed */
+  min-width: 200px; /* Adjust the minimum width as needed */
   background-color: black;
   color: white;
   font-size: 1.5em;
   font-weight: bold;
-  padding: 10px;
+  padding: 10px 20px; /* Adjust padding as needed */
   border-radius: 5px;
   margin-bottom: 20px;
   text-align: center;
