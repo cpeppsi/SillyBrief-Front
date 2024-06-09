@@ -68,45 +68,43 @@ function Prompt() {
       <h1 className="title text">Silly Brief</h1>
       <div style={{ textAlign: "center" }}>
         <button className="shuffle-button" onClick={shufflePrompts}>
-          <span className="arrow">&#x21A9;</span> Brief Me!
+          <span className="arrow"><img src="/paper.svg" alt="paper symbol"/> </span> Brief Me!
         </button>
       </div>
       <div className="container">
         <div className="item">
           <h4 className="label">media</h4>
           <h2 className="a text" onClick={() => toggleLock('media')}>
-            {randomPrompts.media} {locked.media ? '🔒' : '🔓'}
+            {randomPrompts.media}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('media')}>
-            {locked.media ? '🔒' : '🔓'}
+            <img src="/lock.svg" alt={locked.media ? "Locked" : "Unlocked"} />
           </div>
         </div>
         <div className="item">
           <h4 className="label">brand</h4>
           <h2 className="b text" onClick={() => toggleLock('brand')}>
-            {randomPrompts.brand} {locked.brand ? '🔒' : '🔓'}
+            {randomPrompts.brand}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('brand')}>
-            {locked.brand ? '🔒' : '🔓'}
+            <img src="/lock.svg" alt={locked.brand ? "Locked" : "Unlocked"} />
           </div>
         </div>
         <div className="item">
           <h4 className="label">target audience</h4>
           <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
-            {randomPrompts.targetAudience} {locked.targetAudience ? '🔒' : '🔓'}
+            {randomPrompts.targetAudience}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
-            {locked.targetAudience ? '🔒' : '🔓'}
+            <img src="/lock.svg" alt={locked.targetAudience ? "Locked" : "Unlocked"} />
           </div>
         </div>
       </div>
       <div style={{ textAlign: "center", marginTop: "20px" }}>
-        <span>customize</span>
+        <span>color and audio</span>
       </div>
     </div>
   );
 }
 
 export default Prompt;
-
-
