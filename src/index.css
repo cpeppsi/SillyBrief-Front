@@ -80,7 +80,7 @@
   .container .item .label {
     position: static; /* Ensure labels stay under the items */
     margin-top: 10px; /* Add some space between items and labels */
-  }
+  } 
 }
 
 
