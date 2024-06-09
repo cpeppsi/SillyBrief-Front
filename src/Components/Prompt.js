@@ -4,6 +4,12 @@ import "../index.css"; // Import the CSS file
 function Prompt() {
   const [prompts, setPrompts] = useState([]);
   const [randomPrompts, setRandomPrompts] = useState({});
+  const [locked, setLocked] = useState({
+    media: false,
+    brand: false,
+    targetAudience: false
+  });
+
   const categories = ["media", "brand", "targetAudience"];
 
   useEffect(() => {
@@ -22,12 +28,21 @@ function Prompt() {
   }, []);
 
   const shufflePrompts = () => {
-    const newRandomPrompts = {};
+    const newRandomPrompts = { ...randomPrompts };
     categories.forEach(category => {
-      const randomIndex = Math.floor(Math.random() * prompts.length);
-      newRandomPrompts[category] = prompts[randomIndex][category];
+      if (!locked[category]) {
+        const randomIndex = Math.floor(Math.random() * prompts.length);
+        newRandomPrompts[category] = prompts[randomIndex][category];
+      }
     });
     setRandomPrompts(newRandomPrompts);
+  };
+
+  const toggleLock = (category) => {
+    setLocked(prevState => ({
+      ...prevState,
+      [category]: !prevState[category]
+    }));
   };
 
   if (prompts.length === 0) {
@@ -44,15 +59,21 @@ function Prompt() {
       </div>
       <div className="container">
         <div className="item">
-          <h2 className="a text">{randomPrompts.media}</h2>
+          <h2 className="a text" onClick={() => toggleLock('media')}>
+            {randomPrompts.media} {locked.media ? '🔒' : '🔓'}
+          </h2>
           <h4 className="label">Media</h4>
         </div>
         <div className="item">
-          <h2 className="b text">{randomPrompts.brand}</h2>
+          <h2 className="b text" onClick={() => toggleLock('brand')}>
+            {randomPrompts.brand} {locked.brand ? '🔒' : '🔓'}
+          </h2>
           <h4 className="label">Brand</h4>
         </div>
         <div className="item">
-          <h2 className="c text">{randomPrompts.targetAudience}</h2>
+          <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
+            {randomPrompts.targetAudience} {locked.targetAudience ? '🔒' : '🔓'}
+          </h2>
           <h4 className="label">Target Audience</h4>
         </div>
       </div>
