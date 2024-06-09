@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../index.css"; // Import the CSS file
 
 function Prompt() {
   const [prompts, setPrompts] = useState([]);
@@ -42,12 +43,18 @@ function Prompt() {
         </button>
       </div>
       <div className="container">
-        <h2 className="a text">{randomPrompts.media}</h2>
-        <h4 className="label">Media</h4>
-        <h2 className="b text">{randomPrompts.brand}</h2>
-        <h4 className="label">Brand</h4>
-        <h2 className="c text">{randomPrompts.targetAudience}</h2>
-        <h4 className="label">Target Audience</h4>
+        <div className="item">
+          <h2 className="a text">{randomPrompts.media}</h2>
+          <h4 className="label">Media</h4>
+        </div>
+        <div className="item">
+          <h2 className="b text">{randomPrompts.brand}</h2>
+          <h4 className="label">Brand</h4>
+        </div>
+        <div className="item">
+          <h2 className="c text">{randomPrompts.targetAudience}</h2>
+          <h4 className="label">Target Audience</h4>
+        </div>
       </div>
     </div>
   );

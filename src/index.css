@@ -43,6 +43,95 @@
   color: white;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .item {
+    margin-bottom: 0;
+  }
+
+  .a, .b, .c {
+    margin-top: 80px;
+  }
+
+  .label {
+    position: relative;
+    top: auto;
+    text-align: center;
+  }
+
+  .container .item .label {
+    position: static; /* Ensure labels stay under the items */
+    margin-top: 10px; /* Add some space between items and labels */
+  }
+}
+
+
+
+
+
+/* .text {
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.title {
+  font-size: 4em;
+}
+
+.label {
+  text-align: center;
+  margin-top: 2%; /* Adjust the margin as needed 
+}
+
+.a, .b, .c {
+  font-size: 2.5em;
+  margin-top: 2%; /* Adjust the margin as needed 
+}
+
+.shuffle-button {
+  display: inline-block;
+  min-width: 200px; /* Adjust the minimum width as needed 
+  background-color: black;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 10px 20px; /* Adjust padding as needed 
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.shuffle-button:hover {
+  box-shadow: 2px 6px 10px rgba(0, 0, 0, 0.5); /* Adjust shadow properties as needed 
+}
+
+.shuffle-button .arrow {
+  background-color: black;
+  color: white;
+} */
+
 /* @media (max-width: 600px) {
   .text {
     font-family: "Pixelify Sans", sans-serif;
