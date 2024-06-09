@@ -75,7 +75,7 @@ function Prompt() {
         <div className="item">
           <h4 className="label">media</h4>
           <h2 className="a text" onClick={() => toggleLock('media')}>
-            {randomPrompts.media}
+            {randomPrompts.media || 'Shuffle'}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('media')}>
             <img src="/lock.svg" alt={locked.media ? "Locked" : "Unlocked"} />
@@ -84,7 +84,7 @@ function Prompt() {
         <div className="item">
           <h4 className="label">brand</h4>
           <h2 className="b text" onClick={() => toggleLock('brand')}>
-            {randomPrompts.brand}
+            {randomPrompts.brand || 'Shuffle'}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('brand')}>
             <img src="/lock.svg" alt={locked.brand ? "Locked" : "Unlocked"} />
@@ -93,7 +93,7 @@ function Prompt() {
         <div className="item">
           <h4 className="label">target audience</h4>
           <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
-            {randomPrompts.targetAudience}
+            {randomPrompts.targetAudience || 'Shuffle'}
           </h2>
           <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
             <img src="/lock.svg" alt={locked.targetAudience ? "Locked" : "Unlocked"} />
