@@ -3,18 +3,12 @@ import "../index.css"; // Import the CSS file
 
 function Prompt() {
   const [prompts, setPrompts] = useState([]);
-  const [randomPrompts, setRandomPrompts] = useState({
-    media: '',
-    brand: '',
-    targetAudience: ''
-  });
+  const [randomPrompts, setRandomPrompts] = useState({});
   const [locked, setLocked] = useState({
     media: false,
     brand: false,
     targetAudience: false
   });
-  const [error, setError] = useState(null);
-  const [shuffling, setShuffling] = useState(false);
 
   const categories = ["media", "brand", "targetAudience"];
 
@@ -23,14 +17,10 @@ function Prompt() {
       try {
         const URL = `${process.env.REACT_APP_BACKEND_URI}/prompts`;
         const response = await fetch(URL);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
         const data = await response.json();
         setPrompts(data);
       } catch (error) {
         console.error("Error fetching prompts:", error);
-        setError(error.message);
       }
     };
 
@@ -38,34 +28,28 @@ function Prompt() {
   }, []);
 
   const shufflePrompts = () => {
-    setShuffling(true);
-
     const interval = setInterval(() => {
       const newRandomPrompts = { ...randomPrompts };
       categories.forEach(category => {
         if (!locked[category]) {
-          const filteredPrompts = prompts.filter(prompt => prompt[category]);
-          const randomIndex = Math.floor(Math.random() * filteredPrompts.length);
-          newRandomPrompts[category] = filteredPrompts[randomIndex][category];
+          const randomIndex = Math.floor(Math.random() * prompts.length);
+          newRandomPrompts[category] = prompts[randomIndex][category];
         }
       });
       setRandomPrompts(newRandomPrompts);
-    }, 100); // Change prompt every 100ms
+    }, 100);
 
     setTimeout(() => {
       clearInterval(interval);
-
-      const finalRandomPrompts = { ...randomPrompts };
+      const newRandomPrompts = { ...randomPrompts };
       categories.forEach(category => {
         if (!locked[category]) {
-          const filteredPrompts = prompts.filter(prompt => prompt[category]);
-          const randomIndex = Math.floor(Math.random() * filteredPrompts.length);
-          finalRandomPrompts[category] = filteredPrompts[randomIndex][category];
+          const randomIndex = Math.floor(Math.random() * prompts.length);
+          newRandomPrompts[category] = prompts[randomIndex][category];
         }
       });
-      setRandomPrompts(finalRandomPrompts);
-      setShuffling(false);
-    }, 2000); // Duration of the animation
+      setRandomPrompts(newRandomPrompts);
+    }, 2000);
   };
 
   const toggleLock = (category) => {
@@ -75,12 +59,8 @@ function Prompt() {
     }));
   };
 
-  if (prompts.length === 0 && !error) {
+  if (prompts.length === 0) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
 
   return (
@@ -93,27 +73,40 @@ function Prompt() {
       </div>
       <div className="container">
         <div className="item">
-          <h2 className={`a text ${shuffling ? 'shuffling' : ''}`} onClick={() => toggleLock('media')}>
-            {randomPrompts.media || 'Select Media'} {locked.media ? '🔒' : '🔓'}
+          <h4 className="label">media</h4>
+          <h2 className="a text" onClick={() => toggleLock('media')}>
+            {randomPrompts.media} {locked.media ? '🔒' : '🔓'}
           </h2>
-          <h4 className="label">Media</h4>
+          <div className="lock-icon" onClick={() => toggleLock('media')}>
+            {locked.media ? '🔒' : '🔓'}
+          </div>
         </div>
         <div className="item">
-          <h2 className={`b text ${shuffling ? 'shuffling' : ''}`} onClick={() => toggleLock('brand')}>
-            {randomPrompts.brand || 'Select Brand'} {locked.brand ? '🔒' : '🔓'}
+          <h4 className="label">brand</h4>
+          <h2 className="b text" onClick={() => toggleLock('brand')}>
+            {randomPrompts.brand} {locked.brand ? '🔒' : '🔓'}
           </h2>
-          <h4 className="label">Brand</h4>
+          <div className="lock-icon" onClick={() => toggleLock('brand')}>
+            {locked.brand ? '🔒' : '🔓'}
+          </div>
         </div>
         <div className="item">
-          <h2 className={`c text ${shuffling ? 'shuffling' : ''}`} onClick={() => toggleLock('targetAudience')}>
-            {randomPrompts.targetAudience || 'Select Target Audience'} {locked.targetAudience ? '🔒' : '🔓'}
+          <h4 className="label">target audience</h4>
+          <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
+            {randomPrompts.targetAudience} {locked.targetAudience ? '🔒' : '🔓'}
           </h2>
-          <h4 className="label">Target Audience</h4>
+          <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
+            {locked.targetAudience ? '🔒' : '🔓'}
+          </div>
         </div>
+      </div>
+      <div style={{ textAlign: "center", marginTop: "20px" }}>
+        <span>customize</span>
       </div>
     </div>
   );
 }
 
 export default Prompt;
+
 
