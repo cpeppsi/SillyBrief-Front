@@ -12,6 +12,52 @@ body {
   height: 100vh;
 }
 
+/* Header styling */
+.holy-grail-header {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 6em;
+  font-family: "Pixelify Sans", sans-serif;
+  font-weight: 600;
+  width: 100%; /* Fixed width */
+  margin-top: 20px; /* Margin between header and top of page */
+}
+
+.copyright {
+  text-align: center;
+  font-size: 0.8em;
+  margin-top: 10px;
+}
+
+/* Holy Grail Layout */
+.holy-grail {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  justify-content: space-between; /* Ensure even spacing between elements */
+}
+
+.holy-grail-footer {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.holy-grail-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Evenly space out the main content */
+  padding: 20px;
+  width: 100%;
+}
+
+/* Existing styles */
 h1, h2, h4, .shuffle-button {
   margin: 0;
   font-family: "Pixelify Sans", sans-serif;
@@ -22,14 +68,6 @@ h1, h2, h4, .shuffle-button {
   font-weight: 600;
   text-align: center;
   color: #000000;
-}
-
-.title {
-  font-size: 4em;
-  color: #ffffff;
-  background-color: #000000;
-  padding: 10px 20px;
-  margin-bottom: 20px;
 }
 
 .label {
@@ -53,30 +91,28 @@ h1, h2, h4, .shuffle-button {
 /* Shuffle button styling */
 .shuffle-button {
   display: inline-block;
-  min-width: 200px; /* Adjust the minimum width as needed */
-  background-color: black;
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  padding: 10px 20px; /* Adjust padding as needed */
-  border-radius: 5px;
-  margin-bottom: 20px;
-  text-align: center;
-  transition: box-shadow 0.3s ease;
-}
-
-.shuffle-button:hover {
-  display: inline-block;
   background-color: #ffffff;
   color: #000000;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: bold;
   padding: 10px 20px;
   border: 2px solid #000000;
   border-radius: 5px;
-  margin-bottom: 20px;
   text-align: center;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.shuffle-button:hover {
+  display: inline-block;
+  min-width: 200px;
+  background-color: black;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+  transition: box-shadow 0.3s ease;
 }
 
 .arrow {
@@ -84,8 +120,8 @@ h1, h2, h4, .shuffle-button {
 }
 
 .lock-icon {
-  width: 30px; /* Adjust size as needed */
-  height: 30px; /* Adjust size as needed */
+  width: 30px;
+  height: 30px;
   margin-top: 10px;
   cursor: pointer;
 }
@@ -94,7 +130,6 @@ h1, h2, h4, .shuffle-button {
   width: 100%;
   height: 100%;
 }
-
 
 .container {
   display: flex;
@@ -111,8 +146,8 @@ h1, h2, h4, .shuffle-button {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 10px;
-  width: 100%;
-  max-width: 300px;
+  width: calc(100% - 40px); /* Take full width minus padding */
+  max-width: none; /* Remove max-width restriction */
 }
 
 .lock-icon {
@@ -121,14 +156,24 @@ h1, h2, h4, .shuffle-button {
 }
 
 @media (min-width: 768px) {
+  .holy-grail-main {
+    justify-content: center;
+  }
+
   .container {
     flex-direction: row;
-    justify-content: center;
-    gap: 40px;
+    justify-content: space-between;
+    align-items: stretch; /* Make items fill the container height */
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 20px; /* Add padding for spacing */
   }
 
   .item {
     margin-bottom: 0;
+    flex: 1;
+    margin: 75px 100px; /* Add margin for spacing between items */
+    max-width: none; /* Remove max-width restriction */
   }
 
   .label {
