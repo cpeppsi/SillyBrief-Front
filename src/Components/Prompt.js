@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../index.css"; // Import the CSS file
 
 function Prompt() {
@@ -79,6 +80,7 @@ function Prompt() {
         <header className="holy-grail-header">
           Silly Brief
         </header>
+        <Link to="/about">About</Link>
         <main className="holy-grail-main">
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             <button className="shuffle-button" 
