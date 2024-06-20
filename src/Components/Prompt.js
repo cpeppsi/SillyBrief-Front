@@ -73,54 +73,57 @@ function Prompt() {
   }
 
   return (
-    <div className="holy-grail">
-      <div className="copyright">Created by Cooper and Casey Epps &#169; 2024</div>
-      <header className="holy-grail-header">
-        Silly Brief
-      </header>
-      <main className="holy-grail-main">
-        <div style={{ textAlign: "center", marginBottom: "20px" }}>
-          <button className="shuffle-button" 
-          onMouseEnter={handleButtonHover}
-          onMouseLeave={handleButtonLeave}
-          onClick={shufflePrompts}>
-            <span className="arrow"><img src={isButtonHovered ? "/wpaper.svg" : "paper.svg"} alt="paper symbol"/> </span> Brief Me!
-          </button>
-        </div>
-        <div className="container">
-          <div className="item">
-            <h4 className="label">media</h4>
-            <h2 className="a text" onClick={() => toggleLock('media')}>
-              {randomPrompts.media || 'Shuffle'}
-            </h2>
-            <div className="lock-icon" onClick={() => toggleLock('media')}>
-              <img src={locked.media ? "/lock.svg" : "/unlock.svg"} alt={locked.media ? "Locked" : "Unlocked"} />
+    <div className="wrapper">
+      <div className="holy-grail">
+        <div className="copyright">Created by Cooper and Casey Epps &#169; 2024</div>
+        <header className="holy-grail-header">
+          Silly Brief
+        </header>
+        <main className="holy-grail-main">
+          <div style={{ textAlign: "center", marginBottom: "20px" }}>
+            <button className="shuffle-button" 
+            onMouseEnter={handleButtonHover}
+            onMouseLeave={handleButtonLeave}
+            onClick={shufflePrompts}>
+              <span className="arrow"><img src={isButtonHovered ? "/wpaper.svg" : "paper.svg"} alt="paper symbol"/> </span> Brief Me!
+            </button>
+          </div>
+          <div className="container">
+            <div className="item">
+              <h4 className="label">media</h4>
+              <h2 className="a text" onClick={() => toggleLock('media')}>
+                {randomPrompts.media || 'Shuffle'}
+              </h2>
+              <div className="lock-icon" onClick={() => toggleLock('media')}>
+                <img src={locked.media ? "/lock.svg" : "/unlock.svg"} alt={locked.media ? "Locked" : "Unlocked"} />
+              </div>
+            </div>
+            <div className="item">
+              <h4 className="label">brand</h4>
+              <h2 className="b text" onClick={() => toggleLock('brand')}>
+                {randomPrompts.brand || 'Shuffle'}
+              </h2>
+              <div className="lock-icon" onClick={() => toggleLock('brand')}>
+                <img src={locked.brand ? "/lock.svg" : "/unlock.svg"} alt={locked.brand ? "Locked" : "Unlocked"} />
+              </div>
+            </div>
+            <div className="item">
+              <h4 className="label">target audience</h4>
+              <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
+                {randomPrompts.targetAudience || 'Shuffle'}
+              </h2>
+              <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
+                <img src={locked.targetAudience ? "/lock.svg" : "/unlock.svg"} alt={locked.targetAudience ? "Locked" : "Unlocked"} />
+              </div>
             </div>
           </div>
-          <div className="item">
-            <h4 className="label">brand</h4>
-            <h2 className="b text" onClick={() => toggleLock('brand')}>
-              {randomPrompts.brand || 'Shuffle'}
-            </h2>
-            <div className="lock-icon" onClick={() => toggleLock('brand')}>
-              <img src={locked.brand ? "/lock.svg" : "/unlock.svg"} alt={locked.brand ? "Locked" : "Unlocked"} />
-            </div>
-          </div>
-          <div className="item">
-            <h4 className="label">target audience</h4>
-            <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
-              {randomPrompts.targetAudience || 'Shuffle'}
-            </h2>
-            <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
-              <img src={locked.targetAudience ? "/lock.svg" : "/unlock.svg"} alt={locked.targetAudience ? "Locked" : "Unlocked"} />
-            </div>
-          </div>
-        </div>
-      </main>
-      <footer className="holy-grail-footer">
-        color and audio
-      </footer>
+        </main>
+        <footer className="holy-grail-footer">
+          color and audio
+        </footer>
+      </div>
     </div>
+    
   );
 }
 

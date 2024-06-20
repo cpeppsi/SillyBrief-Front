@@ -7,9 +7,11 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /*Originally center*/
+  justify-content: center; /*Originally center*/
   height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  overflow-y: auto; /* Allow vertical scrolling */
 }
 
 /* Header styling */
@@ -17,14 +19,16 @@ body {
   background-color: #000000;
   color: #ffffff;
   text-align: center;
-  padding: 10px 20px;
-  font-size: 6em;
+  padding: 15px 10px;
+  font-size: 3.8em;
   font-family: "Pixelify Sans", sans-serif;
-  font-weight: 600;
-  width: 100%; /* Fixed width */
-  margin-top: 20px; /* Margin between header and top of page */
+  font-weight: 4500;
+  width: 100%; /* Percentage width for responsiveness */
+  max-width: 290px;/* Set a max-width for mobile view */
+  margin: 20px auto; /* Center align with auto margins */
 }
 
+/* Copyright styling */
 .copyright {
   text-align: center;
   font-size: 0.8em;
@@ -41,8 +45,12 @@ body {
 }
 
 .holy-grail-footer {
-  background-color: #000000;
-  color: #ffffff;
+  width: 100vw; /* Ensure footer takes full width */
+  position: relative; /* Make sure it's positioned relative to the viewport */
+  left: 50%; /* Position it in the center horizontally */
+  transform: translateX(-50%); /* Center align by transforming half its width */
+  border-top: 2px solid #000000; /* Thin line at the top */
+  color: #000000; /* Ensure text is black */
   text-align: center;
   padding: 10px 0;
 }
@@ -78,7 +86,7 @@ h1, h2, h4, .shuffle-button {
 }
 
 .a, .b, .c {
-  font-size: 2em;
+  font-size: 2.5em;
   margin-top: 2%;
   color: #000000;
   text-decoration: underline;
@@ -158,6 +166,12 @@ h1, h2, h4, .shuffle-button {
 @media (min-width: 768px) {
   .holy-grail-main {
     justify-content: center;
+  }
+
+  .holy-grail-header {
+    text-align: center;
+    max-width: 400px;
+    font-size: 5.2em;
   }
 
   .container {
