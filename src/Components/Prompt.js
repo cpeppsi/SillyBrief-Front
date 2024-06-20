@@ -81,6 +81,7 @@ function Prompt() {
           Silly Brief
         </header>
         <Link to="/about">About</Link>
+        <Link to="/instruction">Instructions</Link>
         <main className="holy-grail-main">
           <div style={{ textAlign: "center", marginBottom: "20px" }}>
             <button className="shuffle-button" 
