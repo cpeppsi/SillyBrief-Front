@@ -1,16 +1,18 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-
-import Prompt from "./Components/Prompt"
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./Components/Navbar"; // Import the new Navbar component
+import Prompt from "./Components/Prompt";
 import About from "./Components/About";
-import Instruction from "./Components/Instruction"
+import Instruction from "./Components/Instruction";
 import Copy from "./Components/Copy";
 import Art from "./Components/Art";
-import "./index.css"
+import "./index.css";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Prompt />} />
           <Route path="/about" element={<About />} />

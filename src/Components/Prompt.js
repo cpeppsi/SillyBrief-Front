@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "../index.css"; // Import the CSS file
+import "../index.css";
 
 function Prompt() {
   const [prompts, setPrompts] = useState([]);
@@ -9,7 +8,7 @@ function Prompt() {
   const [locked, setLocked] = useState({
     media: false,
     brand: false,
-    targetAudience: false
+    targetAudience: false,
   });
 
   const categories = ["media", "brand", "targetAudience"];
@@ -32,7 +31,7 @@ function Prompt() {
   const shufflePrompts = () => {
     const interval = setInterval(() => {
       const newRandomPrompts = { ...randomPrompts };
-      categories.forEach(category => {
+      categories.forEach((category) => {
         if (!locked[category]) {
           const randomIndex = Math.floor(Math.random() * prompts.length);
           newRandomPrompts[category] = prompts[randomIndex][category];
@@ -44,7 +43,7 @@ function Prompt() {
     setTimeout(() => {
       clearInterval(interval);
       const newRandomPrompts = { ...randomPrompts };
-      categories.forEach(category => {
+      categories.forEach((category) => {
         if (!locked[category]) {
           const randomIndex = Math.floor(Math.random() * prompts.length);
           newRandomPrompts[category] = prompts[randomIndex][category];
@@ -63,9 +62,9 @@ function Prompt() {
   };
 
   const toggleLock = (category) => {
-    setLocked(prevState => ({
+    setLocked((prevState) => ({
       ...prevState,
-      [category]: !prevState[category]
+      [category]: !prevState[category],
     }));
   };
 
@@ -74,61 +73,49 @@ function Prompt() {
   }
 
   return (
-    <div className="wrapper">
-      <div className="holy-grail">
-        <div className="copyright">Created by Cooper and Casey Epps &#169; 2024</div>
-        <header className="holy-grail-header">
-          Silly Brief
-        </header>
-        <Link to="/about">About</Link>
-        <Link to="/instruction">Instructions</Link>
-        <Link to="/copy">Copy</Link>
-        <Link to="/art">Art</Link>
-        <main className="holy-grail-main">
-          <div style={{ textAlign: "center", marginBottom: "20px" }}>
-            <button className="shuffle-button" 
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-            onClick={shufflePrompts}>
-              <span className="arrow"><img src={isButtonHovered ? "/wpaper.svg" : "paper.svg"} alt="paper symbol"/> </span> Brief Me!
-            </button>
-          </div>
-          <div className="container">
-            <div className="item">
-              <h4 className="label">media</h4>
-              <h2 className="a text" onClick={() => toggleLock('media')}>
-                {randomPrompts.media || 'Shuffle'}
-              </h2>
-              <div className="lock-icon" onClick={() => toggleLock('media')}>
-                <img src={locked.media ? "/lock.svg" : "/unlock.svg"} alt={locked.media ? "Locked" : "Unlocked"} />
-              </div>
-            </div>
-            <div className="item">
-              <h4 className="label">brand</h4>
-              <h2 className="b text" onClick={() => toggleLock('brand')}>
-                {randomPrompts.brand || 'Shuffle'}
-              </h2>
-              <div className="lock-icon" onClick={() => toggleLock('brand')}>
-                <img src={locked.brand ? "/lock.svg" : "/unlock.svg"} alt={locked.brand ? "Locked" : "Unlocked"} />
-              </div>
-            </div>
-            <div className="item">
-              <h4 className="label">target audience</h4>
-              <h2 className="c text" onClick={() => toggleLock('targetAudience')}>
-                {randomPrompts.targetAudience || 'Shuffle'}
-              </h2>
-              <div className="lock-icon" onClick={() => toggleLock('targetAudience')}>
-                <img src={locked.targetAudience ? "/lock.svg" : "/unlock.svg"} alt={locked.targetAudience ? "Locked" : "Unlocked"} />
-              </div>
-            </div>
-          </div>
-        </main>
-        <footer className="holy-grail-footer">
-          color and audio
-        </footer>
+    <div className="holy-grail">
+      <div style={{ textAlign: "center" }}>
+        <button
+          className="shuffle-button"
+          onMouseEnter={handleButtonHover}
+          onMouseLeave={handleButtonLeave}
+          onClick={shufflePrompts}
+        >
+          <span className="arrow">
+            <img
+              src={isButtonHovered ? "/wpaper.svg" : "paper.svg"}
+              alt="paper symbol"
+            />{" "}
+          </span>{" "}
+          Brief Me!
+        </button>
       </div>
+      <main className="holy-grail-main">
+        <div className="container">
+          {categories.map((category) => (
+            <div className="item" key={category}>
+            <h4 className="label">{category}</h4>
+              <h2
+                className={`text ${category}`}
+                onClick={() => toggleLock(category)}
+              >
+                {randomPrompts[category] || "Shuffle"}
+              </h2>
+              <div
+                className="lock-icon"
+                onClick={() => toggleLock(category)}
+              >
+                <img
+                  src={locked[category] ? "/lock.svg" : "/unlock.svg"}
+                  alt={locked[category] ? "Locked" : "Unlocked"}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
+      <footer className="holy-grail-footer">color and audio</footer>
     </div>
-    
   );
 }
 
