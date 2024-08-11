@@ -1,8 +1,34 @@
+/*Different "Theme" colors*/
+:root.theme1 {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+:root.theme2 {
+  --background-color: #3824FB;
+  --text-color: #8DFF42;
+}
+
+:root.theme3 {
+  --background-color: #1C1C1C;
+  --text-color: #FF4EC9;
+}
+
+:root.theme4 {
+  --background-color: #E14036;
+  --text-color: #D7FFF3;
+}
+
+:root.theme5 {
+  --background-color: #2A2C4C;
+  --text-color: #AB6EB3;
+}
+
 /* General styling */
 body {
-  background-color: #ffffff;
+  background-color: var(--background-color);
   font-family: "Pixelify Sans", sans-serif;
-  color: #000000;
+  color: var(--text-color);
   margin: 0;
   padding: 0;
   display: flex;
@@ -28,7 +54,7 @@ body {
 .bar {
   width: 100%;
   height: 3px;
-  background-color: #000;
+  background-color: var(--text-color);
   transition: all 0.3s ease-in-out;
 }
 
@@ -50,18 +76,26 @@ body {
   position: absolute;
   top: 150px;
   left: 10px;
-  background-color: #ffffff;
-  border: 1px solid #000000;
+  background-color: var(--background-color);
+  border: 1px solid var(--text-color);
   border-radius: 5px;
   z-index: 5;
 }
 
 .mobile-nav-links a {
-  color: #000000;
+  color: var(--text-color);
   text-decoration: none;
   margin: 10px;
   font-size: 1em;
   font-weight: bold;
+}
+
+.color-button {
+  background-color: var(--background-color);
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -82,7 +116,7 @@ body {
   }
   
   .hamburger-menu.open .bar {
-    background-color: #000000; /* Changes color to white when open */
+    background-color: var(--text-color); /* Changes color to white when open */
   }
 }
 
@@ -107,8 +141,8 @@ body {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  border-top: 2px solid #000000;
-  color: #000000;
+  border-top: 2px solid var(--text-color);
+  color: var(--text-color);
   text-align: center;
   padding: 10px 0;
 }
@@ -136,37 +170,38 @@ h1, h2, h4, .shuffle-button {
 .text {
   font-weight: 600;
   text-align: center;
-  color: #000000;
+  font-size: 2.5em;
+  color: var(--text-color);
 }
 
 .label {
   text-align: center;
   margin-bottom: 3%;
   font-size: 1em;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .a, .b, .c {
   text-align: center;
   font-size: 2.5em;
   margin-top: 2%;
-  color: #000000;
+  color: var(--text-color);
   text-decoration: underline;
 }
 
 .a:hover, .b:hover, .c:hover {
-  color: #000000;
+  color: var(--text-color);
 }
 
 /* Shuffle button styling */
 .shuffle-button {
   display: inline-block;
-  background-color: #ffffff;
-  color: #000000;
+  background-color: var(--background-color);
+  color: var(--text-color);
   font-size: 1.5em;
   font-weight: bold;
   padding: 10px 20px;
-  border: 2px solid #000000;
+  border: 2px solid var(--text-color);
   border-radius: 5px;
   text-align: center;
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
@@ -175,18 +210,14 @@ h1, h2, h4, .shuffle-button {
 
 .shuffle-button:hover {
   display: inline-block;
-  background-color: black;
-  color: white;
+  background-color: var(--text-color);
+  color: var(--background-color);
   font-size: 1.5em;
   font-weight: bold;
   padding: 10px 20px;
   border-radius: 5px;
   text-align: center;
   transition: box-shadow 0.3s ease;
-}
-
-.arrow {
-  color: #ffffff;
 }
 
 .lock-icon {
@@ -212,7 +243,8 @@ h1, h2, h4, .shuffle-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  
+  background-color: var(--background-color);
   padding: 20px;
   border-radius: 10px;
   width: calc(100% - 40px);

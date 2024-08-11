@@ -11,6 +11,14 @@ function Prompt() {
     targetAudience: false,
   });
 
+  // Add state for theme images
+  const [themeImages, setThemeImages] = useState({
+    lockSrc: '/lock.svg',
+    paperSrc: '/paper.svg',
+    unlockSrc: '/unlock.svg',
+    inversePaperSrc: '/wpaper.svg',
+  });
+
   const categories = ["media", "brand", "targetAudience"];
 
   useEffect(() => {
@@ -53,6 +61,46 @@ function Prompt() {
     }, 2000);
   };
 
+  const changeTheme = (theme) => {
+    document.documentElement.className = theme;
+
+    let lockSrc, paperSrc, unlockSrc, inversePaperSrc;
+
+    if (theme === 'theme1') {
+      lockSrc = '/lock.svg';
+      paperSrc = '/paper.svg';
+      unlockSrc = '/unlock.svg';
+      inversePaperSrc = '/wpaper.svg';
+    } else if (theme === 'theme2') {
+      lockSrc = '/glock.svg';
+      paperSrc = '/gpaper.svg';
+      unlockSrc = '/gUnlock.svg';
+      inversePaperSrc = '/bluePaper.svg';
+    } else if (theme === 'theme3') {
+      lockSrc = '/pinkLock.svg';
+      paperSrc = '/pinkPaper.svg';
+      unlockSrc = '/pinkUnlock.svg';
+      inversePaperSrc = '/paper.svg';
+    } else if (theme === 'theme4') {
+      lockSrc = '/paleLock.svg';
+      paperSrc = '/wpaper.svg';
+      unlockSrc = '/paleUnlock.svg';
+      inversePaperSrc = '/redPaper.svg';
+    } else if (theme === 'theme5') {
+      lockSrc = '/pinkLock.svg';
+      paperSrc = '/pinkPaper.svg';
+      unlockSrc = '/pinkUnlock.svg';
+      inversePaperSrc = '/purplePaper.svg';
+    }
+
+    setThemeImages({
+      lockSrc,
+      paperSrc,
+      unlockSrc,
+      inversePaperSrc
+    });
+  };
+
   const handleButtonHover = () => {
     setIsButtonHovered(true);
   };
@@ -81,12 +129,10 @@ function Prompt() {
           onMouseLeave={handleButtonLeave}
           onClick={shufflePrompts}
         >
-          <span className="arrow">
-            <img
-              src={isButtonHovered ? "/wpaper.svg" : "paper.svg"}
-              alt="paper symbol"
-            />{" "}
-          </span>{" "}
+          <img
+            src={isButtonHovered ? themeImages.inversePaperSrc : themeImages.paperSrc}
+            alt="Paper"
+          />
           Brief Me!
         </button>
       </div>
@@ -94,7 +140,7 @@ function Prompt() {
         <div className="container">
           {categories.map((category) => (
             <div className="item" key={category}>
-            <h4 className="label">{category}</h4>
+              <h4 className="label">{category}</h4>
               <h2
                 className={`text ${category}`}
                 onClick={() => toggleLock(category)}
@@ -106,7 +152,7 @@ function Prompt() {
                 onClick={() => toggleLock(category)}
               >
                 <img
-                  src={locked[category] ? "/lock.svg" : "/unlock.svg"}
+                  src={locked[category] ? themeImages.lockSrc : themeImages.unlockSrc}
                   alt={locked[category] ? "Locked" : "Unlocked"}
                 />
               </div>
@@ -114,7 +160,23 @@ function Prompt() {
           ))}
         </div>
       </main>
-      <footer className="holy-grail-footer">color and audio</footer>
+      <footer className="holy-grail-footer">
+        <button className="color-button" onClick={() => changeTheme("theme1")}>
+          <img alt="White/black color button" src="../black-white.svg"/>
+        </button>
+        <button className="color-button" onClick={() => changeTheme("theme2")}>
+          <img alt="Blue/green color button" src="../bluegreen.svg"/>
+        </button>
+        <button className="color-button" onClick={() => changeTheme("theme3")}>
+          <img alt="Black/pink color button" src="../blackpink.svg"/>
+        </button>
+        <button className="color-button" onClick={() => changeTheme("theme4")}>
+          <img alt="Red/white color button" src="../redwhite.svg"/>
+        </button>
+        <button className="color-button" onClick={() => changeTheme("theme5")}>
+          <img alt="Purple/pink color button" src="../purplepink.svg"/>
+        </button>
+      </footer>
     </div>
   );
 }

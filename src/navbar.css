@@ -1,3 +1,29 @@
+/*Different "Theme" colors*/
+:root.theme1 {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+:root.theme2 {
+  --background-color: #3824FB;
+  --text-color: #8DFF42;
+}
+
+:root.theme3 {
+  --background-color: #1C1C1C;
+  --text-color: #FF4EC9;
+}
+
+:root.theme4 {
+  --background-color: #E14036;
+  --text-color: #D7FFF3;
+}
+
+:root.theme5 {
+  --background-color: #2A2C4C;
+  --text-color: #AB6EB3;
+}
+
 .navbar-container {
   display: flex;
   flex-direction: column;
@@ -8,6 +34,7 @@
   padding: 10px 20px;
   margin-top: 125px;
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 .copyright {
@@ -41,7 +68,7 @@
 }
 
 .nav-links a {
-  color: #000000;
+  color: var(--text-color);
   text-decoration: none;
   margin: 0 10px;
   font-size: 1em;
@@ -53,8 +80,8 @@
 }
 
 .holy-grail-header {
-  background-color: #000000;
-  color: #ffffff;
+  background-color: var(--text-color);
+  color: var(--background-color);
   text-align: center;
   padding: 15px 15px;
   font-size: 3.2em;
