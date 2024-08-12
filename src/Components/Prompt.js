@@ -24,7 +24,7 @@ function Prompt() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const URL = `${process.env.REACT_APP_BACKEND_URI}/prompts`;
+        const URL = 'https://silly-briefs-back.vercel.app/prompts';
         const response = await fetch(URL);
         const data = await response.json();
         setPrompts(data);
@@ -41,25 +41,42 @@ function Prompt() {
       const newRandomPrompts = { ...randomPrompts };
       categories.forEach((category) => {
         if (!locked[category]) {
-          const randomIndex = Math.floor(Math.random() * prompts.length);
-          newRandomPrompts[category] = prompts[randomIndex][category];
+          if (prompts.length > 0) {
+            const randomIndex = Math.floor(Math.random() * prompts.length);
+            if (prompts[randomIndex] && prompts[randomIndex][category] !== undefined) {
+              newRandomPrompts[category] = prompts[randomIndex][category];
+            } else {
+              console.warn(`Category ${category} not found in prompt at index ${randomIndex}`);
+            }
+          } else {
+            console.warn('No prompts available');
+          }
         }
       });
       setRandomPrompts(newRandomPrompts);
     }, 100);
-
+  
     setTimeout(() => {
       clearInterval(interval);
       const newRandomPrompts = { ...randomPrompts };
       categories.forEach((category) => {
         if (!locked[category]) {
-          const randomIndex = Math.floor(Math.random() * prompts.length);
-          newRandomPrompts[category] = prompts[randomIndex][category];
+          if (prompts.length > 0) {
+            const randomIndex = Math.floor(Math.random() * prompts.length);
+            if (prompts[randomIndex] && prompts[randomIndex][category] !== undefined) {
+              newRandomPrompts[category] = prompts[randomIndex][category];
+            } else {
+              console.warn(`Category ${category} not found in prompt at index ${randomIndex}`);
+            }
+          } else {
+            console.warn('No prompts available');
+          }
         }
       });
       setRandomPrompts(newRandomPrompts);
     }, 2000);
   };
+  
 
   const changeTheme = (theme) => {
     document.documentElement.className = theme;
